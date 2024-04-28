@@ -1,6 +1,9 @@
 #!/bin/bash
 
-set -euxo pipefail
+set -e
+set -u
+set -o pipefail
+set -x
 
 apt-get update
 DEBIAN_FRONTEND=noninteractive apt install --no-install-recommends \

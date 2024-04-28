@@ -1,4 +1,7 @@
-FROM nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
+# FROM nvidia/cuda:9.0-cudnn7-devel-ubuntu16.04
+# FROM nvidia/cuda:11.0.3-cudnn8-devel-ubuntu16.04
+FROM pytorch/pytorch:1.1.0-cuda10.0-cudnn7.5-devel
+# FROM pytorch/pytorch:1.4-cuda10.1-cudnn7-devel
 
 ARG USER_NAME
 ARG USER_PASSWORD
@@ -20,11 +23,12 @@ WORKDIR /home/$USER_NAME
 
 # install system dependencies
 COPY ./scripts/install_deps.sh /tmp/install_deps.sh
-RUN yes "Y" | /tmp/install_deps.sh
+RUN yes "Y" | bash /tmp/install_deps.sh
 
 # setup python environment
 RUN cd $WORKDIR
 ENV VIRTUAL_ENV=/home/$USER_NAME/alfred_env
+RUN pip install virtualenv
 RUN python3 -m virtualenv --python=/usr/bin/python3 $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 

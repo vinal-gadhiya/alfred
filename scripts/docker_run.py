@@ -45,13 +45,13 @@ if __name__=="__main__":
         cmd += " --name %(container_name)s " % {'container_name': args.container}
 
     # gpus
-    cmd += " --gpus %s" % (args.gpus)
+    # cmd += " --gpus %s" % (args.gpus)
 
     # display
     if args.headless:
         cmd += " -v /usr/bin/nvidia-xconfig:/usr/bin/nvidia-xconfig "
     else:
-        cmd += " -e DISPLAY -e QT_X11_NO_MITSHM=1 -v /tmp/.X11-unix:/tmp/.X11-unix:rw "    # enable graphics
+        cmd += " -e DISPLAY -e QT_X11_NO_MITSHM=1 -v /tmp/.X11-unix:/tmp/.X11-unix:rw"    # enable graphics
 
     # bindings
     cmd += " -v %(source_dir)s:%(home_directory)s/alfred " \
