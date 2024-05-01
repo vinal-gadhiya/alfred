@@ -45,7 +45,7 @@ if __name__=="__main__":
         cmd += " --name %(container_name)s " % {'container_name': args.container}
 
     # gpus
-    # cmd += " --gpus %s" % (args.gpus)
+    cmd += " --gpus %s" % (args.gpus)
 
     # display
     if args.headless:
